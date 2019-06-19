@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     
     private EditText et_city;
     private TextView tv_weatherInfo;
-    private final String WEATHERINFO_FORMAT = "城市：%s\n PM2.5指数：%s\n 空气质量：%s\n 空气质量：%s\n pm10:%s\n curPm:%s\n pm25:%s\n ";
+    private final String WEATHERINFO_FORMAT = "城市：%s\n PM2.5指数：%s\n 空气质量指标：%s\n 空气质量：%s\n pm10:%s\n curPm:%s\n pm25:%s\n 更新时间：%s ";
     
     
     @Override
@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btQuery:
                 String city = et_city.getText().toString();
-                //                city = "北京";
                 if (TextUtils.isEmpty(city)) {
                     showInfo("请输入您要查询的城市");
                     return;
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     
                                     
                                     tv_weatherInfo.setText(String.format(WEATHERINFO_FORMAT,
-                                        cityName, pm25Level, airQuality, airQualityDes, pm10, curPm, pm25));
+                                        cityName, pm25Level, airQuality, airQualityDes, pm10, curPm, pm25, updateTime));
                                     
                                 } else {
                                     showInfo("查询失败");

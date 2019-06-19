@@ -51,7 +51,11 @@ public class NetUtils {
                     result = request(URL_Constant.WEATHER_URL, params, "GET");
                     Gson gson = new GsonBuilder().create();
                     Log.i("infoStr", result);
-                    WeatherInfo info = gson.fromJson(result, WeatherInfo.class);
+                    JSONObject jsonObject = new JSONObject(result);
+                    WeatherInfo info = null;
+                    if (jsonObject.getInt("error_code") == 0) {
+                        info = gson.fromJson(result, WeatherInfo.class);
+                    }
                     if (iRequstInfo != null) {
                         iRequstInfo.getInfo(info);
                     }
